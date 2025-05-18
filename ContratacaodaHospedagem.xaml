@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppHotel.Views.ContratacaodaHospedagem"
+             Title="ContratacaodaHospedagem"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F9FAFB">
+    
+    <VerticalStackLayout VerticalOptions="CenterAndExpand"
+                         Padding="10">
+        <Label 
+            Text="Cálculo da Diária"
+            FontFamily="DeliusUnicase"
+            FontSize="30"
+            TextColor="#2563EB"
+            HorizontalTextAlignment="Center"/>
+
+        <Frame Padding="10">
+            <VerticalStackLayout>
+                <Grid RowDefinitions="Auto, Auto, *"
+                      ColumnDefinitions="*, *, 2*" >
+                    
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Text="Adultos:"> </Label>
+
+                    <Label Grid.Row="0" Grid.Column="1"
+                           TextColor="White" 
+                           Text="{Binding Value}"
+                           BindingContext="{x:Reference stp_adultos}"></Label>
+                                       
+                    <Stepper Grid.Row="0" Grid.Column="2"
+                             x:Name="stp_adultos"
+                             Minimum="0"
+                             Maximum="10"
+                             Increment="1"/>
+
+
+                    <Label Grid.Row="1" Grid.Column="0"
+                           Text="Crianças:"></Label>
+
+                    <Label Grid.Row="1" Grid.Column="1"
+                           TextColor="White" 
+                            Text="{Binding Value}"
+                             BindingContext="{x:Reference stp_criancas}"></Label>
+
+                    <Stepper Grid.Row="1" Grid.Column="2"
+                             x:Name="stp_criancas"
+                             Minimum="0"
+                             Maximum="10"
+                             Increment="1"/>
+                </Grid>
+
+                <Label Text="Escolha sua Suíte"/>
+
+                <Picker x:Name="pck_quarto"
+                        Title="Selecione sua Acomodação"                        
+                        ItemDisplayBinding="{Binding Descricao}"/>
+
+                <Frame Padding="10" Margin="10">
+                    <VerticalStackLayout>
+                        <Label Text="Período da Estadia"/>
+                        
+                        <HorizontalStackLayout>
+                        <Label Text="check-in"/>
+                            <DatePicker x:Name="dtpck_checkin"
+                                    DateSelected="dtpck_checkin_DateSelected"    
+                                    Format="dd/MM/yyyy"/>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout>
+                            <Label Text="check-out"/>
+                            <DatePicker x:Name="dtpck_checkout"
+                                   Format="dd/MM/yyyy"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+                <Grid BackgroundColor="Transparent" RowDefinitions="*" ColumnDefinitions=" *, *">
+
+                    <Button Text="Sobre" Clicked="Button_Clicked" Margin="15"  BackgroundColor="CornflowerBlue" TextColor="{StaticResource PrimaryDarkText}"
+                        HorizontalOptions="Start" Padding="15" Grid.Row="0" Grid.Column="0"/>
+
+                    <Button Text="Avançar" Clicked="Button_Clicked_1" Margin="15" BackgroundColor="CornflowerBlue" Grid.Row="0" Grid.Column="1" HorizontalOptions="End"/>
+
+                </Grid>
+
+
+
+            </VerticalStackLayout>
+
+
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>
